@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2>Lead Management</h2>
+            <p class="text-muted">
+                Manage and assign customer leads
+            </p>
+        </div>
+
+        <a href="{{ url_for('add_lead') }}"
+           class="btn btn-primary">
+            <i class="bi bi-person-plus"></i>
+            Add Lead
+        </a>
+
+    </div>
+
+
+    {% if leads %}
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th>Loan Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Assigned Staff</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for lead in leads %}
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ lead.customer_name }}
+                                </strong>
+                            </td>
+
+                            <td>{{ lead.phone }}</td>
+
+                            <td>{{ lead.city }}</td>
+
+                            <td>{{ lead.loan_type }}</td>
+
+                            <td>
+                                ₹ {{ lead.loan_amount }}
+                            </td>
+
+                            <td>
+
+                                {% if lead.status == 'new' %}
+
+                                    <span class="badge bg-primary">
+                                        New
+                                    </span>
+
+                                {% elif lead.status == 'assigned' %}
+
+                                    <span class="badge bg-info text-dark">
+                                        Assigned
+                                    </span>
+
+                                {% elif lead.status == 'interested' %}
+
+                                    <span class="badge bg-success">
+                                        Interested
+                                    </span>
+
+                                {% elif lead.status == 'follow_up' %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Follow-up
+                                    </span>
+
+                                {% elif lead.status == 'not_interested' %}
+
+                                    <span class="badge bg-danger">
+                                        Not Interested
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-secondary">
+                                        {{ lead.status }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if lead.staff_name %}
+
+                                    <span class="text-success">
+                                        <i class="bi bi-person-check"></i>
+                                        {{ lead.staff_name }}
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="text-muted">
+                                        Not Assigned
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                <form
+                                    action="{{ url_for('assign_lead', lead_id=lead.id) }}"
+                                    method="POST"
+                                    class="d-flex gap-2">
+
+                                    <select
+                                        name="staff_id"
+                                        class="form-select form-select-sm"
+                                        required>
+
+                                        <option value="">
+                                            Select Staff
+                                        </option>
+
+                                        {% for employee in staff %}
+
+                                        <option value="{{ employee.id }}"
+                                            {% if lead.assigned_to == employee.id %}
+                                                selected
+                                            {% endif %}>
+
+                                            {{ employee.name }}
+
+                                        </option>
+
+                                        {% endfor %}
+
+                                    </select>
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-primary">
+
+                                        <i class="bi bi-person-plus"></i>
+                                        Assign
+
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info">
+        No leads available.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

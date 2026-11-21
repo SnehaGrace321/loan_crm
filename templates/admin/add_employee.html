@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2>Add Employee</h2>
+
+            <p class="text-muted">
+                Create a new staff account.
+            </p>
+        </div>
+
+        <a href="{{ url_for('employees') }}"
+           class="btn btn-outline-primary">
+
+            ← Back to Employees
+
+        </a>
+
+    </div>
+
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Employee Name
+                    </label>
+
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Enter employee name"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="employee@example.com"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           placeholder="Enter temporary password"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Daily Call Target
+                    </label>
+
+                    <input type="number"
+                           name="daily_target"
+                           class="form-control"
+                           value="100"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <div class="alert alert-info">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    The new employee will be created as an
+                    <strong>active Staff user</strong>.
+
+                </div>
+
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    <i class="bi bi-person-plus"></i>
+                    Create Employee
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

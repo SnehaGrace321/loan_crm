@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Documents - Loan CRM{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-1">
+                Customer Documents
+            </h2>
+
+            <p class="text-muted mb-0">
+                Collect and track customer loan documents
+            </p>
+        </div>
+
+        <a href="{{ url_for('staff_dashboard') }}"
+           class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+            Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- Customer Selection -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">
+                Select Customer
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Customer
+                    </label>
+
+                    <select class="form-select">
+
+                        <option selected>
+                            Select customer
+                        </option>
+
+                        <!-- Dynamic customers will be added later -->
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Loan Type
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Loan type"
+                           readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Document Upload -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">
+                Upload Documents
+            </h5>
+
+            <form>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Document Type
+                        </label>
+
+                        <select class="form-select">
+
+                            <option selected>
+                                Select document
+                            </option>
+
+                            <option>
+                                Aadhaar Card
+                            </option>
+
+                            <option>
+                                PAN Card
+                            </option>
+
+                            <option>
+                                Salary Slip
+                            </option>
+
+                            <option>
+                                Bank Statement
+                            </option>
+
+                            <option>
+                                Address Proof
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Choose File
+                        </label>
+
+                        <input type="file"
+                               class="form-control"
+                               accept=".pdf,.jpg,.jpeg,.png">
+
+                    </div>
+
+                </div>
+
+
+                <div class="mt-3">
+
+                    <button type="button"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-upload"></i>
+                        Upload Document
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Document List -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h5 class="fw-bold mb-0">
+                    Uploaded Documents
+                </h5>
+
+                <span class="badge bg-secondary">
+                    0 Documents
+                </span>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Document</th>
+                            <th>Type</th>
+                            <th>Uploaded Date</th>
+                            <th>Verification</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <!-- Dynamic documents will be displayed here later -->
+
+                        <tr>
+
+                            <td colspan="5"
+                                class="text-center text-muted py-4">
+
+                                <i class="bi bi-folder2-open fs-2"></i>
+
+                                <div class="mt-2">
+                                    No documents uploaded yet.
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

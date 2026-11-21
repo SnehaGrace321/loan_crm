@@ -1,0 +1,631 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Header -->
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+            <h2>Staff Dashboard</h2>
+
+            <p class="text-muted mb-0">
+                Welcome, {{ name }}
+            </p>
+        </div>
+
+        <span class="badge bg-success">
+            <i class="bi bi-person-check"></i>
+            Staff Portal
+        </span>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mt-2">
+
+        <!-- My Leads -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 p-3">
+
+                <h6 class="text-muted">
+                    My Leads
+                </h6>
+
+                <h2>
+                    {{ total_leads }}
+                </h2>
+
+                <i class="bi bi-people fs-3 text-primary"></i>
+
+                <small class="text-muted mt-2">
+                    Assigned customers
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Today's Calls -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 p-3">
+
+                <h6 class="text-muted">
+                    Today's Calls
+                </h6>
+
+                <h2>
+                    {{ today_calls }}
+                </h2>
+
+                <i class="bi bi-telephone fs-3 text-success"></i>
+
+                <small class="text-muted mt-2">
+                    Calls completed today
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Interested Leads -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 p-3">
+
+                <h6 class="text-muted">
+                    Interested Leads
+                </h6>
+
+                <h2>
+                    {{ interested_leads }}
+                </h2>
+
+                <i class="bi bi-hand-thumbs-up fs-3 text-warning"></i>
+
+                <small class="text-muted mt-2">
+                    Interested customers
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Follow-ups -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 p-3">
+
+                <h6 class="text-muted">
+                    Follow-ups
+                </h6>
+
+                <h2>
+                    {{ followups }}
+                </h2>
+
+                <i class="bi bi-calendar-check fs-3 text-danger"></i>
+
+                <small class="text-muted mt-2">
+                    Scheduled follow-ups
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Daily Call Target -->
+
+    <div class="card shadow-sm border-0 mt-4 p-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <h5 class="mb-1">
+                    Today's Call Target
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Track your daily calling progress
+                </p>
+
+            </div>
+
+            <span class="fw-bold">
+                {{ today_calls }} / 100
+            </span>
+
+        </div>
+
+
+        <div class="progress mt-3"
+             style="height: 25px;">
+
+            <div class="progress-bar"
+                 role="progressbar"
+                 style="width: {{ [today_calls, 100] | min }}%;">
+
+                {{ today_calls }} / 100
+
+            </div>
+
+        </div>
+
+
+        <p class="text-muted mt-2 mb-0">
+            Keep going! Your daily target is 100 calls.
+        </p>
+
+    </div>
+
+
+    <!-- Quick Actions -->
+
+    <div class="card shadow-sm border-0 mt-4 p-4">
+
+        <h5>
+            Quick Actions
+        </h5>
+
+        <div class="d-flex flex-wrap gap-2 mt-3">
+
+            <!-- My Leads -->
+
+            <a href="{{ url_for('staff_leads') }}"
+               class="btn btn-primary">
+
+                <i class="bi bi-people"></i>
+                My Leads
+
+            </a>
+
+
+            <!-- Today's Calls -->
+
+            <a href="{{ url_for('staff_leads') }}"
+               class="btn btn-success">
+
+                <i class="bi bi-telephone"></i>
+                Today's Calls
+
+            </a>
+
+
+            <!-- Follow-ups -->
+
+            <a href="{{ url_for('staff_followups') }}"
+               class="btn btn-warning">
+
+                <i class="bi bi-calendar-check"></i>
+                Follow-ups
+
+            </a>
+
+
+            <!-- Documents  -->
+
+            <!-- <a href="#documents"
+               class="btn btn-outline-primary">
+
+                <i class="bi bi-folder-check"></i>
+                Documents
+
+            </a> -->
+
+
+            <!-- Loan Applications - -->
+
+            <a href="#loan-applications"
+               class="btn btn-outline-dark">
+
+                <i class="bi bi-file-earmark-text"></i>
+                Loan Applications
+
+            </a>
+
+
+            <!-- Performance  -->
+
+            <a href="#performance"
+               class="btn btn-outline-success">
+
+                <i class="bi bi-graph-up"></i>
+                My Performance
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Documents Section -->
+
+    <!-- <div id="documents"
+         class="card shadow-sm border-0 mt-4 p-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <h5>
+                    <i class="bi bi-folder-check text-primary"></i>
+                    Customer Documents
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Collect customer documents and track verification status.
+                </p>
+
+            </div>
+
+            <span class="badge bg-warning text-dark">
+                Pending
+            </span>
+
+        </div>
+
+
+        <div class="row g-3 mt-2">
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <i class="bi bi-person-vcard fs-3 text-primary"></i>
+
+                    <h6 class="mt-2">
+                        Aadhaar Card
+                    </h6>
+
+                    <span class="badge bg-secondary">
+                        Pending
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <i class="bi bi-credit-card fs-3 text-primary"></i>
+
+                    <h6 class="mt-2">
+                        PAN Card
+                    </h6>
+
+                    <span class="badge bg-success">
+                        Verified
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <i class="bi bi-file-earmark-text fs-3 text-primary"></i>
+
+                    <h6 class="mt-2">
+                        Salary Slip
+                    </h6>
+
+                    <span class="badge bg-warning text-dark">
+                        Pending
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <i class="bi bi-bank fs-3 text-primary"></i>
+
+                    <h6 class="mt-2">
+                        Bank Statement
+                    </h6>
+
+                    <span class="badge bg-secondary">
+                        Not Uploaded
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> -->
+
+ <!-- Loan Applications -->
+
+<div id="loan-applications"
+     class="card shadow-sm border-0 mt-4 p-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+
+            <h5>
+                <i class="bi bi-file-earmark-text text-primary"></i>
+                Loan Application Follow-ups
+            </h5>
+
+            <p class="text-muted mb-0">
+                Track customer loan application progress.
+            </p>
+
+        </div>
+
+        <span class="badge bg-info text-dark">
+            {{ application_followups }} Follow-ups
+        </span>
+
+    </div>
+
+
+    <div class="table-responsive mt-3">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>Customer</th>
+                    <th>Loan Type</th>
+                    <th>Bank</th>
+                    <th>Status</th>
+                    <th>Next Follow-up</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% if loan_applications %}
+
+                    {% for application in loan_applications %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ application.customer_name }}
+                            </strong>
+                        </td>
+
+
+                        <td>
+                            {{ application.loan_type or '-' }}
+                        </td>
+
+
+                        <td>
+                            {{ application.bank_name }}
+                        </td>
+
+
+                        <td>
+
+                            {% if application.status == 'approved' %}
+
+                                <span class="badge bg-success">
+                                    Approved
+                                </span>
+
+                            {% elif application.status == 'under_review' %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Under Review
+                                </span>
+
+                            {% elif application.status == 'documents_pending' %}
+
+                                <span class="badge bg-info text-dark">
+                                    Documents Pending
+                                </span>
+
+                            {% elif application.status == 'rejected' %}
+
+                                <span class="badge bg-danger">
+                                    Rejected
+                                </span>
+
+                            {% elif application.status == 'disbursed' %}
+
+                                <span class="badge bg-primary">
+                                    Disbursed
+                                </span>
+
+                            {% elif application.status == 'closed' %}
+
+                                <span class="badge bg-dark">
+                                    Closed
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+                                    {{ application.status|replace('_', ' ')|title }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+                            {{ application.next_follow_up or '-' }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="5"
+                            class="text-center text-muted py-4">
+
+                            <i class="bi bi-file-earmark-x fs-2"></i>
+
+                            <div class="mt-2">
+                                No loan applications found.
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div> 
+
+
+
+    <!-- Personal Performance -->
+
+    <div id="performance"
+         class="card shadow-sm border-0 mt-4 p-4">
+
+        <h5>
+            <i class="bi bi-graph-up text-success"></i>
+            My Performance
+        </h5>
+
+        <p class="text-muted">
+            Your current call centre performance.
+        </p>
+
+
+        <div class="row g-3 mt-2">
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <h6 class="text-muted">
+                        Calls Completed
+                    </h6>
+
+                    <h3>
+                        {{ today_calls }}
+                    </h3>
+
+                    <small class="text-muted">
+                        Today
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <h6 class="text-muted">
+                        Daily Target
+                    </h6>
+
+                    <h3>
+                        100
+                    </h3>
+
+                    <small class="text-muted">
+                        Calls
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <h6 class="text-muted">
+                        Interested Leads
+                    </h6>
+
+                    <h3>
+                        {{ interested_leads }}
+                    </h3>
+
+                    <small class="text-muted">
+                        Customers
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="border rounded p-3">
+
+                    <h6 class="text-muted">
+                        Follow-ups
+                    </h6>
+
+                    <h3>
+                        {{ followups }}
+                    </h3>
+
+                    <small class="text-muted">
+                        Scheduled
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

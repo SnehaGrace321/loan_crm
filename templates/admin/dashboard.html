@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Loan CRM{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="fw-bold mb-1">
+            Admin Dashboard
+        </h2>
+
+        <p class="text-muted mb-0">
+            Monitor loan sales and call centre performance
+        </p>
+    </div>
+
+    <div>
+        <span class="badge bg-success">
+            <i class="bi bi-circle-fill"></i>
+            System Active
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Statistics -->
+
+<div class="row g-4 mb-4">
+
+    <!-- Total Leads -->
+    <div class="col-md-3">
+
+        <div class="card dashboard-card h-100">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+                        <p class="text-muted mb-1">
+                            Total Leads
+                        </p>
+
+                        <h3 class="fw-bold">
+                            {{ total_leads }}
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                </div>
+
+                <small class="text-muted">
+                    All registered leads
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Today's Calls -->
+    <div class="col-md-3">
+
+        <div class="card dashboard-card h-100">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+                        <p class="text-muted mb-1">
+                            Today's Calls
+                        </p>
+
+                        <h3 class="fw-bold">
+                            {{ today_calls }}
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+
+                </div>
+
+                <small class="text-muted">
+                    Calls completed today
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Interested Leads -->
+    <div class="col-md-3">
+
+        <div class="card dashboard-card h-100">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+                        <p class="text-muted mb-1">
+                            Interested Leads
+                        </p>
+
+                        <h3 class="fw-bold">
+                            {{ interested_leads }}
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </div>
+
+                </div>
+
+                <small class="text-muted">
+                    Leads showing interest
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Approved Loans -->
+    <div class="col-md-3">
+
+        <div class="card dashboard-card h-100">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+                        <p class="text-muted mb-1">
+                            Approved Loans
+                        </p>
+
+                        <h3 class="fw-bold">
+                            {{ approved_loans }}
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                </div>
+
+                <small class="text-muted">
+                    Successfully approved
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Quick Actions -->
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h5 class="fw-bold mb-3">
+            Quick Actions
+        </h5>
+
+        <div class="row g-3">
+
+            <div class="col-md-3">
+                <a href="{{ url_for('leads') }}"
+                   class="btn btn-primary w-100 py-3">
+                    <i class="bi bi-people me-2"></i>
+                    Manage Leads
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('bulk_upload') }}"
+                   class="btn btn-success w-100 py-3">
+                    <i class="bi bi-upload me-2"></i>
+                    Bulk Upload
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('employees') }}"
+                   class="btn btn-warning w-100 py-3">
+                    <i class="bi bi-person-badge me-2"></i>
+                    Manage Employees
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('banks') }}"
+                   class="btn btn-dark w-100 py-3">
+                    <i class="bi bi-bank me-2"></i>
+                    Banks & Schemes
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Portal Modules -->
+
+<!-- <div class="card shadow-sm mt-4">
+
+    <div class="card-body">
+
+        <h5 class="fw-bold mb-3">
+            CRM Modules
+        </h5>
+
+        <div class="row g-3">
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-people"></i>
+                    <span>Lead Management</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-person-check"></i>
+                    <span>Employee Management</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-telephone-forward"></i>
+                    <span>Call & Follow-up</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-file-earmark-check"></i>
+                    <span>Loan Applications</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-folder-check"></i>
+                    <span>Documents</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-bank"></i>
+                    <span>Banks & Schemes</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Reports</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="module-box">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Performance</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div> -->
+
+{% endblock %}

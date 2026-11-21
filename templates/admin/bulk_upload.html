@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Bulk Upload Leads</h2>
+
+    <p class="text-muted">
+        Upload multiple customer leads using a CSV file.
+    </p>
+
+    <div class="card shadow-sm border-0 mt-4">
+
+        <div class="card-body">
+
+            <form method="POST"
+                  enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Select CSV File
+                    </label>
+
+                    <input type="file"
+                           name="file"
+                           class="form-control"
+                           accept=".csv"
+                           required>
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-success">
+
+                    <i class="bi bi-upload"></i>
+                    Upload Leads
+
+                </button>
+
+                <a href="{{ url_for('dashboard') }}"
+                   class="btn btn-secondary">
+
+                    Back to Dashboard
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
